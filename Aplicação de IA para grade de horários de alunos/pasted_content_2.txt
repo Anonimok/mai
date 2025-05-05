@@ -1,0 +1,51 @@
+Objetivo da Aplicação:
+
+Gerar automaticamente uma grade horária personalizada para alunos.
+
+Considerar o catálogo de disciplinas da universidade (horários, créditos, disponibilidade de vagas).
+
+Integrar os interesses e preferências do estudante, seu histórico acadêmico e a meta de conclusão do curso.
+
+Fontes e Estrutura dos Dados:
+
+Arquivos de origem:
+• CADASTRO_TURMAS_20251 (Excel/CSV) – contém dados de disciplinas: código, nome, horários (no formato “D.HHMM‑C”), créditos, vagas ofertadas e saldo de vagas. • Merged file.csv – dados complementares do catálogo. • HISTORICO_ESCOLAR_KAUÊ_DOS_SANTOS – para identificar disciplinas já realizadas, desempenho e pré-requisitos cumpridos. • CURRICULO_ADMINISTRAÇÃO_(NOTURNO)_20231 – contém os pré-requisitos, equivalências e estrutura curricular.
+
+Dados chave: Horários (dia/horário de início, créditos), disponibilidade (Saldo de Vagas) e informações de pré-requisitos/equivalências.
+
+Requisitos Funcionais da Aplicação:
+
+Input:
+– Importação automática ou manual dos catálogos de disciplinas e histórico do aluno. – Cadastro de perfil do aluno (preferências, horários disponíveis, interesses temáticos, meta de término).
+
+Processamento:
+– Pré-processamento dos dados (conversão dos horários “D.HHMM‑C” para formato horário). – Modelagem de restrições: conflitos de horário, carga horária mínima/máxima, pré-requisitos, disponibilidade de vagas. – Algoritmo de otimização que avalia as combinações possíveis, ponderando a adequação com base em critérios definidos (preferências, equilíbrio de carga, prazo para conclusão). – Capacidade de “descartar” opções altamente improváveis (por exemplo, disciplinas sem vagas ou que conflitam irreconciliavelmente com o perfil).
+
+Output:
+– Exibição da grade final em formato de tabela (dias da semana × períodos). – Interface para ajustes manuais e feedback do estudante, com recalibração dos critérios se necessário.
+
+Requisitos Não-Funcionais:
+
+Integração com os sistemas acadêmicos (via APIs ou importação de arquivos).
+
+Interface intuitiva e responsiva (aplicação web ou desktop).
+
+Performance adequada para processar catálogos grandes.
+
+Arquitetura modular, permitindo a atualização dos dados e a inclusão de novos critérios de ponderação.
+
+Exemplo de Distribuição dos Horários (com base nos documentos):
+
+Turno noturno: 18:30 às 22:00, dividido em dois blocos (por exemplo, 18:30–20:10 e 20:20–22:00).
+
+Disciplinas obrigatórias já matriculadas: CAD8020 (Finanças Corporativas I – ofertada em dois dias), CIN7504 (Gerenciamento de Projetos) e CAD8016 (Laboratório de Desenvolvimento de Carreira).
+
+Observação de conflitos: Disciplinas como CAD8010, CAD8019, CAD8021 e CAD8018 têm vagas somente pela manhã, exigindo a inclusão de alternativas ou realocações (se possível, via equivalência ou oferta complementar).
+
+Abordagem de Otimização e Algoritmos:
+
+Modelagem via programação por restrição (CSP) ou programação linear inteira (usando, por exemplo, PuLP ou OR-Tools).
+
+Utilização de funções de custo para ponderar conflitos de horário, preferências do aluno, e cumprimento dos requisitos acadêmicos.
+
+Possibilidade de incorporar técnicas de aprendizado (feedback do usuário) para afinar as ponderações futuras.
